@@ -3,10 +3,10 @@ $(function(){
   let $skillsEl = $("#skills");
 
   let allSkills;
-  if (localStorage.getItem("skills") !== null) {
-    allSkills = localStorage.getItem("skills").split(",");
+  if (localStorage.getItem("skills")) {
+    allSkills = JSON.parse(localStorage.getItem("skills"));
+    console.log(allSkills);
   } else {
-    console.log("no skills");
     allSkills = [];
   }
 
@@ -18,8 +18,10 @@ $(function(){
     $skillsEl.append($newSkill);
   }
 
+  // remove skill
   $("#skills").on("click", ".remove-skill", removeSkill);
 
+  // add skill
   $("#add-skill").on("click", (e) => {
     let newSkillName = $skillName.val(); // clean before inserting?
     let $newSkill = $(
@@ -29,7 +31,7 @@ $(function(){
       </li>`);
 
     allSkills.push(newSkillName);
-    localStorage.setItem("skills", allSkills);
+    localStorage.setItem("skills", JSON.stringify(allSkills));
     $skillsEl.append($newSkill);
   });
 
@@ -40,6 +42,6 @@ $(function(){
     $parentLi.fadeOut(300, function() {
       $(this).remove();
     });
-    localStorage.setItem("skills", allSkills);
+    localStorage.setItem("skills", JSON.stringify(allSkills));
   }
 });
