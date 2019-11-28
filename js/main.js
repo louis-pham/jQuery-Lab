@@ -5,7 +5,6 @@ $(function(){
   let allSkills;
   if (localStorage.getItem("skills")) {
     allSkills = JSON.parse(localStorage.getItem("skills"));
-    console.log(allSkills);
   } else {
     allSkills = [];
   }
@@ -21,9 +20,16 @@ $(function(){
   // remove skill
   $("#skills").on("click", ".remove-skill", removeSkill);
 
-  // add skill
-  $("#add-skill").on("click", (e) => {
+  // add skill on button press or enter key press
+  $("#add-skill").on("click", addSkill);
+
+  $skillName.on("keypress", (e) => {
+    if (e.which === 13) addSkill();
+  });
+
+  function addSkill() {
     let newSkillName = $skillName.val(); // clean before inserting?
+
     let $newSkill = $(
       `<li>
         <button class="remove-skill" type="button" name="button">X</button>
@@ -33,9 +39,10 @@ $(function(){
     allSkills.push(newSkillName);
     localStorage.setItem("skills", JSON.stringify(allSkills));
     $skillsEl.append($newSkill);
-  });
+    $skillName.val("");
+  }
 
-  function removeSkill(e) {
+  function removeSkill() {
     $parentLi = $(this).closest("li");
     let indexToRemove = $parentLi.closest("ul").children().index($parentLi);
     allSkills.splice(indexToRemove, 1);

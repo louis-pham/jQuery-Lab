@@ -1,0 +1,80 @@
+:root {
+  --my-green: #93c47d;
+  --my-red: #e06566;
+  --my-orange: #feb03c;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: Roboto, sans-serif;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  margin: 100px auto;
+  width: 60vw;
+}
+
+h1 {
+  padding: 10px;
+  background-color: var(--my-green);
+  color: white;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 300;
+}
+
+ul {
+  list-style-type: none;
+}
+
+li {
+  padding: 8px 0;
+}
+
+.skill {
+  color: var(--my-orange);
+}
+
+button {
+  padding: 5px;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.remove-skill {
+  margin-right: 7px;
+  background-color: var(--my-red);
+  color: white;
+  border: none;
+}
+
+.add-skill {
+  display: flex;
+  margin-top: 5px;
+}
+
+.add-skill input, .add-skill button {
+  padding: 5px;
+  border: 3px solid var(--my-green);
+  background-color: white;
+  color: var(--my-green);
+}
+
+.add-skill input {
+  color: black;
+  flex-grow: 1;
+}
+
+.add-skill button {
+  margin-left: 5px;
+}
